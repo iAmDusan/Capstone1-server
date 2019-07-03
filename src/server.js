@@ -1,7 +1,7 @@
 //initialize server
 const express = require('express');
 const app = require('./app')
-const cors = require('')
+const cors = require('cors')
 const { PORT } = require('./config')
 const weatherRoutes = require('./weather/weather-router')
 
