@@ -5,8 +5,6 @@ const { DARKSKY_KEY } = require('../config')
 const forecast = (latitude, longitude, callback) => {
   // https://darksky.net/dev/docs
 
-  let latitude = 42.3601
-  let longitude = -73.9872
   const API = DARKSKY_KEY
   const url = `https://api.darksky.net/forecast/${API}/${latitude},${longitude}?exclude=minutely,hourly,alerts,flags&units=si`
   
