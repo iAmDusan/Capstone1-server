@@ -10,7 +10,7 @@ fetch.Promise = global.Promise;
 
 const geoURL = "https://api.mapbox.com/geocoding/v5/mapbox.places/";
 const geoAPI = `.json?access_token=${process.env.MAPBOX_API_KEY}`
-const forecastURL = "http://api.darksky.net/forecast/"
+const forecastURL = "https://api.darksky.net/forecast/"
 
 routes.get('/api/:place', (req, res) => {
   const place = req.params.place;
@@ -21,7 +21,7 @@ routes.get('/api/:place', (req, res) => {
     .then(geoRes => {
       dataStream = { ...geoRes }
       const [lat, long] = geoRes.features[0].center
-      fetch(forecastURL + process.env.DARKSKY_API_KEY + lat + "," + long)
+      fetch(forecastURL + process.env.DARKSKY_API_KEY + "/" + lat + "," + long)
       .then(weatherRes => weatherRes.json())
       .then(weatherRes => {
         dataStream = { ...dataStream, ...weatherRes }
