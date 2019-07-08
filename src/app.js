@@ -8,7 +8,6 @@ const weatherRouter = require('./weather/weather-router')
 
 // const thingsRouter = require('./things/things-router')
 
-
 const authRouter = require('./auth/auth-router')
 const usersRouter = require('./users/users-route')
 const app = express()

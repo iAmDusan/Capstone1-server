@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs')
 
 const UsersService = {
     hasUserWithUserName(db, user_name) {
-     return db('thingful_users')
+     return db('capstone_users')
        .where({ user_name })
        .first()
        .then(user => !!user)
@@ -12,7 +12,7 @@ const UsersService = {
     insertUser(db, newUser) {
          return db
            .insert(newUser)
-           .into('thingful_users')
+           .into('capstone_users')
            .returning('*')
            .then(([user]) => user)
     },
