@@ -1,14 +1,15 @@
 //initialize server
-const express = require('express');
 const app = require('./app')
-const cors = require('cors')
-const { PORT } = require('./config')
-const routes = require('./weather/weather-router')
+const knex = require('knex')
+const { PORT, DB_URL } = require('./config')
 
+const db = knex({
+  client: 'pg',
+  connection: DB_URL
+})
 
-app.use(express.static('public'));
-app.use(cors())
-app.use('/', routes)
+app.set( 'db', db )
+
 
 app.listen(PORT, () => {
   console.log(`Server listening at http://localhost:${PORT}`)
