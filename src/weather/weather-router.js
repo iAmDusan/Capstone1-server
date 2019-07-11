@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express')
 const weatherRoutes = express.Router();
 const fetch = require('node-fetch')
@@ -8,7 +9,6 @@ const geoURL = "https://api.mapbox.com/geocoding/v5/mapbox.places/";
 const geoAPI = `.json?access_token=${process.env.MAPBOX_API_KEY}`;
 const forecastURL = "https://api.darksky.net/forecast/";
 const forecastAPI = process.env.DARKSKY_API_KEY;
-
 weatherRoutes.get('/api/:place', (req, res) => {
   const placeSearchString = req.params.place;
   let dataStream = {};
