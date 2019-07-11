@@ -1,15 +1,15 @@
 const express = require('express')
-const routes = express.Router();
+const weatherRoutes = express.Router();
 const fetch = require('node-fetch')
 fetch.Promise = global.Promise;
-// to make API call use /api{string to parse to locate place}
+// to make API call use /api/{string to parse to locate place}
 
 const geoURL = "https://api.mapbox.com/geocoding/v5/mapbox.places/";
-const geoAPI = `.json?access_token=${process.env.MAPBOX_API_KEY}`
-const forecastURL = "https://api.darksky.net/forecast/"
-const forecastAPI = process.env.DARKSKY_API_KEY
+const geoAPI = `.json?access_token=${process.env.MAPBOX_API_KEY}`;
+const forecastURL = "https://api.darksky.net/forecast/";
+const forecastAPI = process.env.DARKSKY_API_KEY;
 
-routes.get('/api/:place', (req, res) => {
+weatherRoutes.get('/api/:place', (req, res) => {
   const placeSearchString = req.params.place;
   let dataStream = {};
 
@@ -32,4 +32,4 @@ routes.get('/api/:place', (req, res) => {
 
 })
 
-module.exports = routes
+module.exports = weatherRoutes

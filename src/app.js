@@ -4,9 +4,8 @@ const morgan = require('morgan')
 const cors = require('cors')
 const helmet = require('helmet')
 const { NODE_ENV } = require('./config')
-const weatherRouter = require('./weather/weather-router')
 
-
+const weatherRoutes = require('./weather/weather-router')
 const authRouter = require('./auth/auth-router')
 const usersRouter = require('./users/users-route')
 const app = express()
@@ -18,7 +17,7 @@ app.use(cors())
 app.use(helmet())
 
 // app.use('/api/things', thingsRouter)
-app.use('/api/weather', weatherRouter)
+app.use('/', weatherRoutes)
 app.use('/api/auth', authRouter)
 app.use('/api/users', usersRouter)
 
