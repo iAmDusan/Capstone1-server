@@ -7,7 +7,6 @@ const favoritesRouter = express.Router()
 const jsonBodyParser = express.json()
 
 
-//fix after login/registration succes
 /* favoritesRouter
   .route('/')
   .post(requireAuth, jsonBodyParser, (req, res, next) => {
