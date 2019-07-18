@@ -3,14 +3,14 @@ const xss = require('xss');
 const FavoritesService = {
   getById(db, id) {
     return db
-    .from('capstone_things AS fav')
-    .select(
-      'fav.id',
-      'fav.title',
-      'fav.content',
-      'fav.date_created',
-      db.raw(
-        `row_to_json(
+      .from('capstone_things AS fav')
+      .select(
+        'fav.id',
+        'fav.title',
+        'fav.content',
+        'fav.date_created',
+        db.raw(
+          `row_to_json(
           (SELECT tmp FROM (
             SELECT
               usr.id,
@@ -21,24 +21,24 @@ const FavoritesService = {
               usr.date_modified
           ) tmp)
         ) AS "user"`
+        )
       )
-    )
-    .leftJoin(
-      'capstone_users AS usr',
-      'fav.user_id',
-      'usr.id',
-    )
-    .where('fav.id', id)
-    .first()
+      .leftJoin(
+        'capstone_users AS usr',
+        'fav.user_id',
+        'usr.id',
+      )
+      .where('fav.id', id)
+      .first();
   },
 
   getUserFavorites(db, user_id) {
     return db
-    .from('capstone_things AS userFav')
-    .select('*',)
-    .where(
-      "user_id", user_id
-    )
+      .from('capstone_things AS userFav')
+      .select('*',)
+      .where(
+        'user_id', user_id
+      );
   },
 
   insertFavorite(db, newFavorite) {
@@ -49,11 +49,11 @@ const FavoritesService = {
       .then(([favorite]) => favorite)
       .then(favorite =>
         FavoritesService.getById(db, favorite.id)
-      )
+      );
   },
 
   serializeFavorite(favorite) {
-    const { user } = favorite
+    const { user } = favorite;
     return {
       id: favorite.id,
       title: xss(favorite.title),
@@ -66,8 +66,8 @@ const FavoritesService = {
         date_created: new Date(user.date_created),
         date_modified: new Date(user.date_modified) || null
       },
-    }
+    };
   }
-}
+};
 
-module.exports = FavoritesService
+module.exports = FavoritesService;

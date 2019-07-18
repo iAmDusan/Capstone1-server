@@ -4,7 +4,7 @@ const FavoritesService = require('../favorites/favorites-service');
 const { requireAuth } = require('../middleware/jwt-auth');
 
 const favoritesRouter = express.Router();
-const jsonBodyParser = express.json();
+// const jsonBodyParser = express.json();
 
 favoritesRouter.get('/', requireAuth, (req, res, next) => {
   FavoritesService.getUserFavorites(req.app.get('db'),

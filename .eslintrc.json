@@ -11,12 +11,15 @@
         "mocha": true,
         "mongo": true
     },
+    "parser": "babel-eslint",
     // our configuration extends the recommended base configuration
     "extends": "eslint:recommended",
+    
     // define the type of file `script` or `module` for ES6 Modules
     "parserOptions": {
         "sourceType": "module"
     },
+
     //ESLint rules: Severity Levels: off = 0 | warn = 1 | error = 2
     "rules": {
         "strict": ["error", "safe"],   //prefer `'use-strict';` pragma
@@ -25,7 +28,7 @@
         "no-unused-vars": "warn",      //warns about unused variables
         "no-eval": "error",            //disallows `eval()` usage
         "indent": ["error", 2],        //enforce 2 space indents (not tabs)        
-        "quotes": ["error", "single"], //prefer single quotes over double quotes
+        "quotes": ["warn", "single"], //prefer single quotes over double quotes
         "semi": "error"    //enforce semi-colon usage
     }
 }
