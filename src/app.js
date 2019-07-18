@@ -8,6 +8,7 @@ const { NODE_ENV } = require('./config')
 const weatherRouter = require('./weather/weather-router')
 const authRouter = require('./auth/auth-router')
 const usersRouter = require('./users/users-route')
+const favoritesRouter = require('./favorites/favorites-router')
 const app = express()
 
 app.use(morgan((NODE_ENV === 'production') ? 'tiny' : 'common', {
@@ -17,6 +18,7 @@ app.use(cors())
 app.use(helmet())
 
 app.use('/', weatherRouter)
+app.use('/api/favorites', favoritesRouter)
 app.use('/api/auth', authRouter)
 app.use('/api/users', usersRouter)
 

@@ -32,6 +32,15 @@ const FavoritesService = {
     .first()
   },
 
+  getUserFavorites(db, user_id) {
+    return db
+    .from('capstone_things AS userFav')
+    .select('*',)
+    .where(
+      "user_id", user_id
+    )
+  },
+
   insertFavorite(db, newFavorite) {
     return db
       .insert(newFavorite)
