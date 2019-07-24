@@ -45,11 +45,11 @@ const FavoritesService = {
     return db
       .insert(newFavorite)
       .into('capstone_things')
-      .returning('*')
-      //.then(([favorite]) => favorite)
-      // .then(favorite =>
-      //   FavoritesService.getById(db, favorite.id)
-      // );
+      .returning('*');
+    //.then(([favorite]) => favorite)
+    // .then(favorite =>
+    //   FavoritesService.getById(db, favorite.id)
+    // );
   },
 
   editFavorite(db, favorite) {
