@@ -46,10 +46,16 @@ const FavoritesService = {
       .insert(newFavorite)
       .into('capstone_things')
       .returning('*')
-      .then(([favorite]) => favorite)
-      .then(favorite =>
-        FavoritesService.getById(db, favorite.id)
-      );
+      //.then(([favorite]) => favorite)
+      // .then(favorite =>
+      //   FavoritesService.getById(db, favorite.id)
+      // );
+  },
+
+  editFavorite(db, favorite) {
+    return db
+      .where({id:favorite.id})
+      .update(favorite);
   },
 
   serializeFavorite(favorite) {

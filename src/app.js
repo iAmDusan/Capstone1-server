@@ -17,6 +17,7 @@ app.use(morgan((NODE_ENV === 'production') ? 'tiny' : 'common', {
 app.use(cors())
 app.use(helmet())
 
+app.use(express.json())
 app.use('/', weatherRouter)
 app.use('/api/favorites', favoritesRouter)
 app.use('/api/auth', authRouter)

@@ -4,7 +4,6 @@ const FavoritesService = require('../favorites/favorites-service');
 const { requireAuth } = require('../middleware/jwt-auth');
 
 const favoritesRouter = express.Router();
-// const jsonBodyParser = express.json();
 
 favoritesRouter.get('/', requireAuth, (req, res, next) => {
   FavoritesService.getUserFavorites(req.app.get('db'),
@@ -15,6 +14,21 @@ favoritesRouter.get('/', requireAuth, (req, res, next) => {
     });
 
 })
-  .post('/', requireAuth);
+  .post('/', requireAuth, (req, res, next) => {
+    FavoritesService.insertFavorite(req.app.get('db'), req.body)
+      .then(favData => {
+        res.json(favData);
+      });
+
+      
+  })
+  .put('/', requireAuth, (req, res, next) => {
+    FavoritesService.editFavorite(req.app.get('db'), req.body)
+      .then(favData => {
+        res.json(favData);
+      });
+  });
+
+
 
 module.exports = favoritesRouter;
