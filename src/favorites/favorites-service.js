@@ -41,21 +41,37 @@ const FavoritesService = {
       );
   },
 
-  insertFavorite(db, newFavorite) {
+  insertFavorite(db, newFavorite, user_id) {
+    newFavorite.user_id = user_id;
     return db
       .insert(newFavorite)
       .into('capstone_things')
       .returning('*');
-    //.then(([favorite]) => favorite)
-    // .then(favorite =>
-    //   FavoritesService.getById(db, favorite.id)
-    // );
+
   },
 
-  editFavorite(db, favorite) {
+  editFavorite(db, favorite, id, user_id) {
     return db
-      .where({id:favorite.id})
+      .from('capstone_things AS userFav')
+      .where(
+        'id', id
+      )
+      .where(
+        'user_id', user_id
+      )
       .update(favorite);
+  },
+
+  removeFavorite(db, favorite, id, user_id) {
+    return db
+      .from('capstone_things AS userFav')
+      .where(
+        'id', id
+      )
+      .where(
+        'user_id', user_id
+      )
+      .del();
   },
 
   serializeFavorite(favorite) {

@@ -8,4 +8,4 @@ module.exports = {
   DARKSKY_KEY: process.env.DARKSKY_API_KEY,
   MAPBOX_KEY: process.env.MAPBOX_API_KEY,
 
-}
+};
