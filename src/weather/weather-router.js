@@ -13,7 +13,6 @@ const forecastAPI = process.env.DARKSKY_API_KEY;
 weatherRouter.get('/weather/:place', (req, res) => {
   const placeSearchString = req.params.place;
   let dataStream = {};
-
   fetch(geoURL + placeSearchString + geoAPI)
     .then(res => res.json())
     .then(geoRes => {
